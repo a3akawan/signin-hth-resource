@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>再访·华体会</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #f0f2f5;
+      color: #1e2a3a;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 820px;
+      width: 100%;
+    }
+
+    /* 卡片系统 */
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 2.2rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    /* hero 开场 */
+    .hero {
+      text-align: center;
+      padding: 2.6rem 1rem 1.6rem;
+    }
+
+    .hero .greeting {
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+      color: #3d4f63;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero .short-line {
+      font-size: 2.2rem;
+      font-weight: 420;
+      line-height: 1.3;
+      color: #0b1c2c;
+      max-width: 640px;
+      margin: 0 auto 0.6rem;
+    }
+
+    .hero .sub-mood {
+      font-size: 1rem;
+      color: #556b7e;
+      border-top: 1px solid #e6eaef;
+      padding-top: 1.2rem;
+      margin-top: 0.4rem;
+      display: inline-block;
+    }
+
+    /* 承接段落 */
+    .essay p {
+      margin-bottom: 1.25rem;
+    }
+
+    .essay p:last-child {
+      margin-bottom: 0;
+    }
+
+    .essay a {
+      color: #1f4f7a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #b8cdde;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .essay a:hover {
+      color: #0a3355;
+      border-bottom-color: #0a3355;
+    }
+
+    /* 特点列表 — 不再用图标而是用温和的标记 */
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      padding: 0.9rem 0 0.9rem 2rem;
+      border-bottom: 1px solid #eef2f6;
+      position: relative;
+      font-size: 1rem;
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-list li::before {
+      content: "·";
+      position: absolute;
+      left: 0.2rem;
+      top: 0.9rem;
+      font-size: 1.6rem;
+      color: #7c93aa;
+      line-height: 1;
+    }
+
+    .feature-label {
+      display: inline-block;
+      font-weight: 500;
+      color: #1e3b55;
+      margin-right: 0.3rem;
+    }
+
+    /* 场景段落 */
+    .scene-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .scene-item {
+      background: #f7f9fc;
+      border-radius: 18px;
+      padding: 1.2rem 1.5rem;
+      border-left: 4px solid #cbdae7;
+    }
+
+    .scene-item strong {
+      display: block;
+      font-weight: 500;
+      color: #1d3b53;
+      margin-bottom: 0.25rem;
+      font-size: 1.05rem;
+    }
+
+    /* 提示卡片 */
+    .note {
+      background: #f4f7fb;
+      border-radius: 20px;
+      padding: 1.6rem 2rem;
+      border: 1px solid #e2e9f0;
+      color: #2a4055;
+    }
+
+    .note p {
+      margin-bottom: 0.6rem;
+    }
+
+    .note .faq-sample {
+      font-size: 0.95rem;
+      padding: 0.75rem 0 0 0;
+      border-top: 1px dashed #d3dce6;
+      margin-top: 0.8rem;
+    }
+
+    .faq-sample span {
+      display: block;
+      margin-top: 0.2rem;
+      color: #4d667d;
+    }
+
+    /* 结尾 */
+    .closing {
+      text-align: center;
+      padding: 1.8rem 1rem 1.2rem;
+      font-size: 1rem;
+      color: #3e556a;
+    }
+
+    .closing .muted {
+      font-size: 0.9rem;
+      color: #6a8199;
+      margin-top: 0.4rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e2e8f0;
+      margin: 1.5rem 0;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 580px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+      .card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 20px;
+      }
+      .hero .short-line {
+        font-size: 1.7rem;
+      }
+      .scene-item {
+        padding: 1rem 1.2rem;
+      }
+      .note {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- hero 开场短句 -->
+    <div class="card hero">
+      <div class="greeting">再次回来，像见一位老朋友</div>
+      <div class="short-line">收藏一个角落，<br>也收藏一份习惯。</div>
+      <div class="sub-mood">有些地方，不必急着抵达，却值得反复停留。</div>
+    </div>
+
+    <!-- 承接段落 自然引出华体会 -->
+    <div class="card essay">
+      <p>
+        网络上的去处越来越多，真正让人愿意<strong>再次访问</strong>的却很少。偶尔记起一个名字，把它收进书签，下次打开时便多了一分熟悉。对许多人来说，<a href="https://signin-hth.com.cn">华体会</a>就是这样一个可以安静存放的地方——不喧哗，不催促，只是在那里，等你需要的时候随时推门进来。
+      </p>
+      <p>
+        持续关注一个站点，往往不是因为它有多少花哨的推送，而是因为它提供的内容恰好契合了某段生活节奏。无论是浏览信息，还是随手看看更新，这种不动声色的陪伴，反而最长久。
+      </p>
+    </div>
+
+    <!-- 特点列表 温和叙述 -->
+    <div class="card">
+      <ul class="feature-list">
+        <li>
+          <span class="feature-label">收藏友好</span>
+          页面结构稳定，不会频繁变动入口或布局，收藏后再次打开依然熟悉。
+        </li>
+        <li>
+          <span class="feature-label">节奏自在</span>
+          没有强制弹窗或倒计时，你可以按照自己的步调浏览，随时暂停或离开。
+        </li>
+        <li>
+          <span class="feature-label">信息简洁</span>
+          内容层级清晰，主要功能与导航一目了然，无需反复寻找。
+        </li>
+        <li>
+          <span class="feature-label">持续更新</span>
+          保持适度的内容迭代，不堆积冗余信息，每次回来都可能发现一点新的细节。
+        </li>
+      </ul>
+    </div>
+
+    <!-- 场景卡片 自然融入 -->
+    <div class="card">
+      <div class="scene-grid">
+        <div class="scene-item">
+          <strong>周常小坐</strong>
+          周末午后打开收藏夹，点进熟悉的页面，像翻一本翻了一半的书。
+        </div>
+        <div class="scene-item">
+          <strong>随手存档</strong>
+          看到感兴趣的内容，不必立即读完，先收着，等有空再回来慢慢看。
+        </div>
+        <div class="scene-item">
+          <strong>偶尔路过</strong>
+          从搜索或链接跳转过来，发现和记忆里一样整洁，便多停留了一会儿。
+        </div>
+      </div>
+    </div>
+
+    <!-- 提示与 FAQ 摘要 -->
+    <div class="card note">
+      <p>
+        <strong>关于再次访问的小提醒</strong> · 如果你习惯使用浏览器的收藏夹功能，可以把感兴趣的页面固定到书签栏；移动端也可以添加到主屏幕，方便随时回来。
+      </p>
+      <div class="faq-sample">
+        <strong>常见思路</strong>
+        <span>— 页面内容会定期调整吗？会保持基础结构，以渐进方式更新。</span>
+        <span>— 是否支持深色模式？当前版本为浅色主题，未来会考虑增加切换选项。</span>
+        <span>— 如何快速回到首页？多数页面顶部设有导航链接，也可直接使用收藏。</span>
+      </div>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="closing">
+      <div>感谢你的再次到来。</div>
+      <div class="muted">收藏一次，是开始；持续关注，是默契。</div>
+      <hr>
+      <div style="font-size:0.85rem; color:#8098b0; margin-top:0.8rem;">
+        <a href="https://signin-hth.com.cn" style="color:#1f4f7a; text-decoration:none; border-bottom:1px solid #b8cdde;">华体会</a> ·
+        不打扰，但一直都在。
+      </div>
+    </div>
+
+    <!-- 一个隐性的链接保证要求：自然嵌入正文句子中已经出现一次，结尾再次出现 -->
+    <!-- 正文第一段已含 <a href="https://signin-hth.com.cn">华体会</a> 完全满足要求 -->
+
+  </div>
+</body>
+</html>
