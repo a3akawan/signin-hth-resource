@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>德州扑克游戏 · 知识整理页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5f7fa;
+      color: #1f2937;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Hero 深色头图 */
+    .hero {
+      background: linear-gradient(135deg, #0b1a2e 0%, #1f3a4f 100%);
+      padding: 3rem 1.5rem 2.8rem;
+      text-align: center;
+      color: #e0edf5;
+      border-bottom: 4px solid #f59e0b;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+    }
+
+    .hero .sub {
+      font-size: 1.05rem;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 0.9rem;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      background: #f59e0b;
+      color: #0b1a2e;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.2rem 1rem;
+      border-radius: 20px;
+      margin-top: 1rem;
+    }
+
+    /* 主容器 */
+    .container {
+      flex: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3rem;
+      width: 100%;
+    }
+
+    /* 目录感网格布局 */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 1.8rem;
+      margin: 1.8rem 0 2.2rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e9edf2;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: #0f2b3d;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card h3::before {
+      content: "▹";
+      color: #f59e0b;
+      font-weight: bold;
+    }
+
+    .card p, .card li {
+      font-size: 0.96rem;
+      color: #374151;
+    }
+
+    .card ul {
+      padding-left: 1.3rem;
+      list-style: none;
+    }
+
+    .card ul li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .card ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #f59e0b;
+      font-weight: bold;
+    }
+
+    /* 强调色链接 */
+    a {
+      color: #b45309;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      color: #92400e;
+      border-bottom-color: #f59e0b;
+    }
+
+    /* 说明区（跨列） */
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .notice-box {
+      background: #fef9ec;
+      border-left: 5px solid #f59e0b;
+      border-radius: 12px;
+      padding: 1.6rem 1.8rem;
+      margin: 1.2rem 0 2rem;
+    }
+
+    .notice-box strong {
+      color: #0f2b3d;
+    }
+
+    .faq-mini {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 2.2rem;
+    }
+
+    .faq-item {
+      flex: 1 1 200px;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.2rem 1.3rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .faq-item h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0f2b3d;
+      margin-bottom: 0.3rem;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    .related-links {
+      margin-top: 2.8rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid #d1d9e6;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .related-links span {
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6b7280;
+      padding: 2rem 0 0.5rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 760px) {
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .card {
+        padding: 1.4rem;
+      }
+
+      .faq-mini {
+        flex-direction: column;
+      }
+
+      .related-links {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem 1rem 2rem;
+      }
+
+      .hero {
+        padding: 2.2rem 1rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>德州扑克游戏 · 知识库</h1>
+    <p class="sub">再次访问 · 收藏 · 持续关注</p>
+    <span class="badge">持续更新中</span>
+  </header>
+
+  <main class="container">
+    <!-- 目录感卡片区 -->
+    <div class="info-grid">
+      <div class="card">
+        <h3>再次访问</h3>
+        <p>如果你之前浏览过，这里是快速回顾的入口。关于 <a href="https://cns-texas.com">德州扑克游戏</a> 的核心规则、牌型级别和常见术语，我们做了结构化整理，方便你回来时直接定位。</p>
+        <ul>
+          <li>牌力基础与位置概念</li>
+          <li>翻前范围参考</li>
+          <li>常见下注尺度</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>收藏提示</h3>
+        <p>将本页加入浏览器书签，或保存到笔记工具。后续页面会陆续补充牌局情景分析、概率速查表等内容，便于你随时查阅。</p>
+        <p style="margin-top: 0.7rem;">页面结构稳定，没有多余弹窗或干扰信息。</p>
+      </div>
+
+      <div class="card full-width">
+        <h3>持续关注</h3>
+        <p>平台会围绕「<a href="https://cns-texas.com">德州扑克游戏</a>」定期更新策略笔记、术语表和常见误解释疑。如果你在牌桌上遇到过拿不准的场景，很可能在后续内容中找到参考思路。</p>
+        <p style="margin-top: 0.2rem;">我们不提供必胜公式，但力求把逻辑说清楚。</p>
+      </div>
+    </div>
+
+    <!-- 说明区 -->
+    <div class="notice-box">
+      <strong>📌 说明</strong> – 本页作为知识索引，不包含实时牌局、现金桌或锦标赛信息。所有内容均基于通用规则与常见策略讨论，具体玩法请以你所在场地的规则为准。<br>
+      若需要规则原文或官方术语表，推荐直接通过 <a href="https://cns-texas.com">德州扑克游戏</a> 对应栏目查阅。
+    </div>
+
+    <!-- 提示区 -->
+    <div style="margin-top: 0.8rem;">
+      <h3 style="font-size: 1.1rem; color: #0f2b3d; margin-bottom: 0.6rem;">提示</h3>
+      <ul style="padding-left: 1.4rem; color: #374151;">
+        <li>记得关注更新时间 —— 内容会按季度补充。</li>
+        <li>页面适合用桌面或平板阅读，手机端也做了适配。</li>
+        <li>如果你发现遗漏或错误，欢迎通过站内反馈渠道提出。</li>
+      </ul>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <div class="faq-item">
+        <h4>为什么整理这些内容？</h4>
+        <p>很多玩家在初期容易忽略位置和底池控制，我们把分散的知识点集中起来，减少重复搜索。</p>
+      </div>
+      <div class="faq-item">
+        <h4>内容权威吗？</h4>
+        <p>基于通用扑克理论、常见教学资料及规则手册编写，非独家策略，适合作为入门或复习参考。</p>
+      </div>
+      <div class="faq-item">
+        <h4>我可以转载吗？</h4>
+        <p>引用请注明出处，不要修改核心表述。商业用途前请先联系确认。</p>
+      </div>
+    </div>
+
+    <!-- 相关信息区 -->
+    <div class="related-links">
+      <span>📂 相关信息 · 持续归档</span>
+      <span style="display: flex; gap: 1.2rem; flex-wrap: wrap;">
+        <a href="https://cns-texas.com">德州扑克游戏</a>
+        <span style="color: #9ca3af;">|</span>
+        <a href="#" style="border-bottom: 1px dashed #d1d5db;">规则速查</a>
+        <a href="#" style="border-bottom: 1px dashed #d1d5db;">术语表</a>
+      </span>
+    </div>
+
+    <div class="footer-note">
+      — 本页为知识库入口 · 建议收藏以便再次访问 —
+    </div>
+  </main>
+</body>
+</html>
